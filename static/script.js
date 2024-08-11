@@ -53,6 +53,11 @@ document.addEventListener('DOMContentLoaded', function() {
             loadingSpinner.style.display = 'none';
             resultsDiv.style.display = 'block';
             generateCharts(income, expenses, savingsGoal);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            loadingSpinner.style.display = 'none';
+            alert('An error occurred. Please try again.');
         });
     });
 
@@ -86,9 +91,16 @@ document.addEventListener('DOMContentLoaded', function() {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                title: {
-                    display: true,
-                    text: 'Expense Breakdown'
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            boxWidth: 12,
+                            font: {
+                                size: 10
+                            }
+                        }
+                    }
                 }
             }
         });
