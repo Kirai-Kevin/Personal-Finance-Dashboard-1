@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Dashboard</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <script src="https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js"></script>
+    <link rel="stylesheet" href="/static/styledash.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <script src="https://code.highcharts.com/dashboards/dashboards.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="{{ url_for('static', filename='dash.js') }}"></script>
+    <script type="text/javascript">
+   google.charts.load('current', {'packages':['line', 'corechart']});
+  google.charts.setOnLoadCallback(function() {
+  drawChart();
+  drawLineChart();
+});
+
+function drawLineChart() {
+  var data = new google.visualization.DataTable();
+  data.addColumn('number', 'Day');
+  data.addColumn('number', 'Spendings');
+
+  data.addRows([
+    [1,  1000],
+    [2,  1170],
+    [3,  660],
+    [4,  1030],
+    // Add more data points as needed
+  ]);
+
+  var options = {
+    chart: {
+      title: '',
+    },
+    width: 250,
+    height: 130,
+    backgroundColor: 'transparent',
+    chartArea: {
+      backgroundColor: 'transparent'
+    },
+    colors: ['#0ef'],
+    legend: { position: 'none' },
+    vAxis: {
+      textStyle: { color: 'transparent' },
+      gridlines: { color: 'transparent' }
+    },
+    hAxis: {
+      textStyle: { color: 'transparent' },
+      gridlines: { color: 'transparent' }
+    },
+    titleTextStyle: { color: 'whitesmoke' },
+    subtitleTextStyle: { color: 'whitesmoke' }
+  };
+
+  var chart = new google.charts.Line(document.getElementById('line_top_x'));
+  chart.draw(data, google.charts.Line.convertOptions(options));
+}
+function drawChart() {
+  var data = new google.visualization.DataTable();
+  data.addColumn('number', 'Day');
+  data.addColumn('number', 'Guardians of the Galaxy');
+
+  data.addRows([
+    [1,  37.8],
+    [2,  30.9],
+    [3,  25.4],
+    [4,  11.7],
+    [5,  11.9],
+    [6,   8.8],
+    [7,   7.6],
+    [8,  12.3],
+    [9,  16.9],
+    [10, 12.8],
+    [11,  5.3],
+    [12,  6.6],
+    [13,  4.8],
+    [14,  4.2]
+  ]);
+
+  var options = {
+    chart: {
+      title: 'Box Office Earnings in First Two Weeks of Opening',
+      subtitle: 'in millions of dollars (USD)'
+    },
+    width: 900,
+    height: 500
+  };
+
+  var chart = new google.charts.Line(document.getElementById('linechart_material'));
+
+  chart.draw(data, google.charts.Line.convertOptions(options));
+}
+    </script>
+    <script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+    ['Source', 'Amount'],
+    ['Salary', 13000],
+    ['Ecommerce', 2100],
+    ['Programmer', 950],
+    ['My Shop', 8000]
+  ]);
+
+  var options = {
+    title: 'Income Sources',
+    titleTextStyle: {
+      color: 'whitesmoke'
+    },
+    legend: { position: 'none' },
+    backgroundColor: 'transparent',
+    colors: ['#0ef'],
+    bar: {
+      groupWidth: '70%'
+    },
+    animation: {
+      startup: true,
+      duration: 1000,
+      easing: 'out'
+    },
+    vAxis: {
+      textStyle: {
+        color: 'whitesmoke'
+      },
+      gridlines: {
+        color: 'transparent'
+      }
+    },
+    hAxis: {
+      textStyle: {
+        color: 'whitesmoke'
+      },
+      gridlines: {
+        color: 'transparent'
+      }
+    },
+    chartArea: {
+      backgroundColor: 'transparent'
+    }
+  };
+
+  var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+  
+  // Add border radius to columns
+  google.visualization.events.addListener(chart, 'ready', function () {
+    var bars = chart.getContainer().getElementsByTagName('rect');
+    Array.prototype.forEach.call(bars, function(bar) {
+      bar.setAttribute('rx', '4');
+      bar.setAttribute('ry', '4');
+    });
+  });
+
+  chart.draw(data, options);
+}
+    </script>
+     <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+google.charts.setOnLoadCallback(drawDonutChart);
+
+function drawDonutChart() {
+  var data = google.visualization.arrayToDataTable([
+    ['Asset', 'Percentage'],
+    ['Warehouse',     11],
+    ['Land',      2],
+    ['Cars',  2],
+    ['Gold', 2],
+    ['Stock',    7]
+  ]);
+
+  var options = {
+    title: 'Assets',
+    pieHole: 0.4,
+    backgroundColor: 'transparent',
+    color: '#fff',
+  };
+
+  var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+  chart.draw(data, options);
+}
+    </script>
+      <script src="dash.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <nav>
+        <div class="navbar">
+            <div class="logo">
+                <img src="/static/images/logo.png" alt="logo"/>
+                <span>Finances</span>
+            </div>
+            <a href="{{ url_for('dashboard') }}"><i class="fa-solid fa-chart-line"></i>Dashboard</a>
+            <a href="{{ url_for('index') }}"><i class="fa-solid fa-star"></i>Report</a>
+            <a href="{{ url_for('update_form') }}"><i class="fa-solid fa-calendar-days"></i>Update Form</a>
+            <a href="{{ url_for('savings') }}"><i class="fa-solid fa-spinner"></i>Savings</a>
+            <a href="{{ url_for('logout') }}" class="logout"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+        </div>
+    </nav>
+  
+   <div class="main">
+    <div class="headers">
+      <div class="column">
+        <h1 class="mainheader">Personal Finance Tracker</h1>
+        <h3 class="balance">Available Balance<h3>
+          <div id="balanceAmount">$ 14,822</div>
+      </div>
+     <h3 class="h"><i class="fa-solid fa-chart-line"></i>Dashboard</h3>
+     <h4 class="h">{{ current_date }}</h4>
+     <h3 class="update h"><a href="{{ url_for('update_form') }}">Update</a></h3>
+     <h3 class="update h"><a href="{{ url_for('login') }}">Login</a></h3>
+     <div class="profile">
+      <div>
+      <h3>  <h3>{{ user_name }}</h3></h3>
+      <h6>Programming</h6>
+    </div>
+    <div class="logo">
+      <img src="/static/images/profile-1.jpg" alt="logo"/>
+      <span>Finances</span>
+  </div>
+
+     </div>
+   </div>
+   
+   <div class="ddiv">
+   <div class="row">
+    <div class="section">
+    <div class="sections">
+      <div class="row">
+      <div class="net">
+          <h3>Total Net Worth</h3>
+          <div id="netWorthValue">$278,378</div>
+      </div>
+  
+      <div class="source">
+        <h6>Income Source</h6>
+        <div id="chart_div" style="width: 300px; height: 180px; background:  #101e32;"></div> 
+      </div>
+       </div>
+       <div class="row">
+          <div class="spendings">
+              <h4>spendings</h4>
+             
+              <div id="spendingsValue">$9,228</div>
+          </div>
+          <div class="spendings">
+              <h4>Income</h4>
+              <div id="incomeValue">$24,050</div>
+              <div id="line_top_x" style="width: 150px; height: 130px; background: transparent;"></div>
+             
+          </div>
+           </div>
+      <div class="row rowspen">
+       <h4 class="spen">Spendings</h4>
+       <div class="fasi">
+        <h5><i class="fas fa-home house"></i>Housing</h5>
+        <p  class="money">$3,456</p>
+       </div>
+       <div class="fasi">
+        <h5><i class="fas fa-user personal"></i>Personal</h5>
+        <p  class="money">$2,200</p>
+       </div>
+       <div class="fasi">
+        <h5><i class="fas fa-car car" ></i>Transportation</h5>
+        <p class="money">$2,200</p>
+       </div>
+        </div>
+
+      
+     
+     </div>
+     <div class="sections">
+      <div class="graph-container">
+        <canvas id="myChart" style="width: 500px; height: 200px;"></canvas>
+    </div>
+  
+    <div class="donut">
+      <div id="donutchart" style="width: 350px; height: 250px;" ></div>
+    </div>
+     </div>
+    </div>
+  </div>
+  
+    <div class="row row2">
+      <div class="goals">
+        <p>61%</p>
+        <h4>Income Goals</h4>
+        <p>Progress for months</p>
+      
+        <div class="cylinder-container">
+          <div class="cylinder">
+            <div class="fill" style="width: 61%;"></div>
+          </div>
+          <span class="percentage">61%</span>
+        </div>
+      </div>
+      <div class="notification">
+        <h4>Notification/h4>
+        <p>3 bills are past Due. Pay soon to avoid late fees</p>
+         <div class="expense">
+          <p>Expenses formy pages and cases</p>
+          <div class="listexpense">
+            <ul>
+              <li>140&nbsp;&nbsp;&nbspRoutine Vet</li>
+              <li> 950&nbsp;&nbsp;&nbspFood</li>
+              <li>231&nbsp;&nbsp;&nbspFood Treats</li>
+              <li>650&nbsp;&nbsp;&nbspKenelBoarding</li>
+            </ul>
+            
+          </div>
+         </div>
+        
+      </div>
+    </div>
+
+   
+  </div>
+  
+   </div>
+
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('myChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+              label: 'Income',
+              data: [1200, 1900, 3000, 5000, 2000, 3000],
+              borderColor: '#4CAF50',
+              tension: 0.4,
+              borderWidth: 3,
+              fill: false
+            }, {
+              label: 'Expenses',
+              data: [1000, 1700, 2800, 3500, 1800, 2500],
+              borderColor: '#FF5722',
+              borderDash: [5, 5],
+              tension: 0.4,
+              borderWidth: 3,
+              fill: false
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              title: {
+                display: true,
+                text: 'Income vs Expenses'
+              }
+            },
+            interaction: {
+              intersect: false,
+            },
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      });
+      </script>
+      <script>
+        function updateProgress(percent) {
+          const fill = document.querySelector('.fill');
+          const percentageSpan = document.querySelector('.percentage');
+          
+          fill.style.width = percent + '%';
+          percentageSpan.textContent = percent + '%';
+        }
+        
+        // Example usage:
+        
+        updateProgress(75)// updateProgress(75); // This would update the progress to 75%
+        </script>
+
+</body>
+</html>
+

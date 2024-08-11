@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <script src="https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js"></script>
+    <link rel="stylesheet" href="/static/styledash.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <script src="https://code.highcharts.com/dashboards/dashboards.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="{{ url_for('static', filename='/dashboard.js') }}"></script>
+    <script src="dashboard.js"></script>
+
+</head>
+<body>
+    <div class="wrapper">
+        <nav>
+        <div class="navbar">
+            <div class="logo">
+                <img src="/static/images/logo.png" alt="logo"/>
+                <span>Finances</span>
+            </div>
+            <a href="{{ url_for('dashboard') }}"><i class="fa-solid fa-chart-line"></i>Dashboard</a>
+            <a href="{{ url_for('index') }}"><i class="fa-solid fa-star"></i>Report</a>
+            <a href="{{ url_for('update_form') }}"><i class="fa-solid fa-calendar-days"></i>Update Form</a>
+            <a href="{{ url_for('savings') }}"><i class="fa-solid fa-spinner"></i>Savings</a>
+            <a href="{{ url_for('logout') }}" class="logout"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+        </div>
+    </nav>
+
+    <div class="main">
+        <main>
+            <h1>Welcome to Your Financial Dashboard</h1>
+            
+            <section class="financial-summary">
+                <div class="rowset">
+                    <div class="rowset1">
+                        <div class="summary-card">
+                            <h3>Total Income</h3>
+                            <p id="total-income">$0</p>
+                        </div>
+                        <div class="summary-card">
+                            <h3>Total Expenses</h3>
+                            <p id="total-expenses">$0</p>
+                        </div>
+                        <div class="summary-card">
+                            <h3>Net Savings</h3>
+                            <p id="net-savings">$0</p>
+                        </div>
+                        <section class="charts">
+                            <div id="income-expense-chart" style="width:700px; height:300px;"></div>
+                           
+                          
+                        </section>
+
+                    </div>
+                    <div class="input-form">
+                        <h2>Update Financial Data</h2>
+                        <form id="update-financial-data">
+                            <div class="form-group">
+                                <label for="month">Month:</label>
+                                <input type="month" id="month" name="month" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="income">Income:</label>
+                                <input type="number" id="income" name="income" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="expenses">Expenses:</label>
+                                <input type="number" id="expenses" name="expenses" required>
+                            </div>
+                            <button type="submit">Update Data</button>
+                        </form>
+                    </div>
+                </div>
+               
+               
+            </section>
+
+           
+           
+
+           
+        </main>
+        
+    </div>
+    </div>
+
+</body>
+</html>

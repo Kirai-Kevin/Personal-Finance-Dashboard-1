@@ -1,13 +1,9 @@
 import secrets
-from quart import Quart, render_template, request, jsonify, redirect, url_for, session
+from quart import Quart, render_template, request, redirect, url_for, session
 from motor.motor_asyncio import AsyncIOMotorClient
-from aijson import Flow
-from dotenv import load_dotenv
 from bson.objectid import ObjectId
 from datetime import date
 import bcrypt
-
-load_dotenv()
 
 app = Quart(__name__, static_folder='static', static_url_path='/static')
 app.secret_key = secrets.token_hex(16)  # Change this to a random secret key
@@ -16,18 +12,6 @@ app.secret_key = secrets.token_hex(16)  # Change this to a random secret key
 client = AsyncIOMotorClient('mongodb+srv://finance:finance123@finance.o1wni.mongodb.net/?retryWrites=true&w=majority&appName=finance')
 db = client['user_database']
 users = db.users
-
-async def run_flow(income, expenses, savings_goal):
-    flow = Flow.from_file('flow.ai.yaml')
-    flow = flow.set_vars(
-        income=income,
-        expenses=expenses,
-        savings_goal=savings_goal,
-        total_expenses=sum(expenses.values())
-    )
-    
-    results = await flow.run()
-    return results
 
 @app.route('/')
 async def home():
@@ -93,8 +77,13 @@ async def dashboard():
 @app.route('/logout', methods=['GET', 'POST'])
 async def logout():
     if request.method == 'POST':
-        session.clear()
-        return redirect(url_for('login'))
+        if 'user_id' in session:
+            user_id = session['user_id']
+            # Delete the user from the database
+            await users.delete_one({'_id': ObjectId(user_id)})
+            # Clear the session
+            session.clear()
+        return redirect(url_for('register'))
     return await render_template('logout.html')
 
 @app.route('/update_form')
@@ -102,26 +91,10 @@ async def update_form():
     # Add logic for update form
     return await render_template('form.html')
 
-@app.route('/index')
-async def index_page():  # Changed function name from update_form to index_page
-    # Add logic for index page
-    return await render_template('index.html')
-
 @app.route('/savings')
 async def savings():
     # Add logic for savings page
     return await render_template('savings.html')
-
-@app.route('/analyze', methods=['POST'])
-async def analyze():
-    data = await request.json
-    income = float(data['income'])
-    expenses = {k: float(v) for k, v in data['expenses'].items()}
-    savings_goal = float(data['savings_goal'])
-    
-    results = await run_flow(income, expenses, savings_goal)
-    
-    return jsonify(results)
 
 if __name__ == '__main__':
     app.run(debug=True)

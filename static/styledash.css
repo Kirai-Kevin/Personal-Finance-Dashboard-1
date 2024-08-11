@@ -1,0 +1,503 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  box-sizing: border-box;
+  border:  none;
+  outline: none;
+  text-decoration: none;
+ 
+}
+body{
+    background: #1f293a;
+    color: whitesmoke;
+    max-height: 100vh;
+}
+.wrapper{
+    display: flex;
+}
+nav{
+    width: 95px;
+    height: 100vh;
+    background: #101e32;
+    transition: 0.5s ease-out;
+}
+.navbar{
+    padding: 1rem;
+    position: relative;
+    height: 110vh;
+    display: flex;
+    flex-direction: column;
+    transition: 0.5s ease-out;
+    overflow: hidden;
+}
+ nav:hover{
+    width: 200px;
+} 
+.logo{
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    overflow: hidden;
+    margin-bottom: 2rem;
+
+}
+.logo img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    
+}
+.logo span{
+    font-size: 18px;
+    color: #fff;
+    font-weight: bold;
+    padding-left: 15px;
+    text-transform: uppercase;
+}
+.navbar a{
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    color: whitesmoke;
+    font-weight: 500;
+    overflow: hidden;
+}
+.navbar i {
+    font-size: 1.2rem;
+    color: whitesmoke;
+    margin: 0 1.8rem 0 0.2rem;
+}
+.navbar a:hover{
+   border-radius: 10px;
+   transition: 0.3s ease-out;
+   background: #0ef;
+}
+.logout{
+    position: absolute;
+    bottom: 100px;
+}
+.logout i{
+    padding-right: 1rem;
+}
+.main{
+    margin-left: 20px;
+    width: calc(100% - 95px);
+}
+.headers{
+   position: sticky;
+   display: flex;
+   gap:20px;
+   padding: 20px;
+   color: #0ef;
+}
+.mainheader{
+    font-size: 18px;
+  
+    margin-bottom: 1px;
+    font-weight: 500;
+   
+}
+.balance{
+    font-size: 26px;
+    color: #fff;
+}
+.money{
+    color: #0ef;
+}
+.net{
+    margin-top: 30px;
+    background: orangered;
+    border-radius: 10px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    width: 350px;
+   
+}
+
+.net h3{
+    color: whitesmoke;
+    margin-left: 10px;
+}
+.net p{
+    color: whitesmoke;
+    margin-left: 10px;
+}
+.sections{
+    display: flex;
+    gap: 10px;
+}
+.source{
+    background: #101e32;
+    padding: 30px;
+    border-radius: 10px;
+}
+.source h6{
+    color: whitesmoke;
+}
+#chart_div{
+    background: transparent;
+}
+.row{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  
+}
+.spendings{
+    background: #101e32;
+    width: 300px;
+    height: 180px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 15px;
+    color: whitesmoke;
+}
+.spen{
+    color: whitesmoke;
+}
+.rowspen{
+    background: #101e32;
+    height: 390px;
+    width: 250px;
+    border-radius: 10%;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    padding: 15px;
+
+}
+.fasi i{
+    margin-right: 10px;
+    font-size: 30px;
+
+}
+.house{
+    color: orangered;
+}
+.personal{
+    color: greenyellow;
+}
+.car{
+    color:wheat
+}
+.graph-container {
+
+    margin-top: 20px;
+    background-color:  #101e32;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.donut{
+    margin-top: 10px;
+    border-radius: 15px;
+    background-color:  #101e32;
+    color: #fff;
+}
+.goals{
+    background-color: #101e32;
+    width: 400px;
+    height: 150px;
+    padding: 20px;
+    border-radius: 15px;
+}
+.notification{
+    background-color: #101e32;
+    height: 450px;
+    padding: 10px;
+}
+.ddiv{
+    display: flex;
+    flex-direction: row;
+}
+.row2{
+    margin-left: 16px;
+}
+
+.expense{
+    margin-top: 50px;
+    
+}
+
+.listexpense{
+    background: #052a5f;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 20px;
+}
+.h{
+    background: #101e32;
+    height: 50px;
+    padding: 20px;
+    border-radius: 10px;
+
+}
+.profile{
+    position: relative;
+    display: flex;
+    left: 0px;
+}
+
+.cylinder-container {
+    position: relative;
+    height: 30px;
+    margin: 20px 0;
+  }
+  
+  .cylinder {
+    width: 100%;
+    height: 100%;
+    background-color: #e0e0e0;
+    border-radius: 25px;
+    overflow: hidden;
+  }
+  .fill {
+    height: 100%;
+    background-color: #4CAF50;
+    transition: width 0.5s ease-in-out;
+  }
+  
+  .percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    color: #333;
+  }
+  .update a{
+    text-decoration: none; 
+  color: inherit; 
+  background-color: transparent; 
+  }
+  .input-form {
+    width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #101e32;
+    border-radius: 10px;
+}
+
+.input-form h2 {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-form label {
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.input-form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: none;
+}
+
+.input-form button {
+    padding: 10px;
+    background-color: #0ef;
+    color: #101e32;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.input-form button:hover {
+    background-color: #0cd;
+}
+
+.rowset {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.summary-card {
+    flex: 1;
+    margin-right: 10px;
+    padding: 15px;
+    background-color: #101e32;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.summary-card:last-child {
+    margin-right: 0;
+}
+
+
+
+.input-form {
+    width: 600px;
+    margin-top: 20px;
+    height: 500px;
+}
+
+.input-form {
+    background-color: #101e32;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    color: #E0E0E3;
+}
+
+.input-form h2 {
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #2b908f;
+    border-radius: 5px;
+    background-color: #1e293b;
+    color: #E0E0E3;
+}
+
+.input-form button {
+    background-color: #2b908f;
+    color: #E0E0E3;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.input-form button:hover {
+    background-color: #38a1a3;
+}
+
+
+.containerindex {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+    background: white;
+}
+.hindex{
+color: #fff;
+}
+
+
+.financeform {
+    width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #101e32;
+    border-radius: 10px;
+}
+
+.label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.button {
+    display: inline-block;
+    background: #2c5282;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.button:hover {
+    background: #1a365d;
+}
+
+#results {
+    margin-top: 30px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.charts-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.chart-wrapper {
+    width: 300px;
+    height: 250px;
+    margin-bottom: 20px;
+}
+
+.expense-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.expense-item input {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.expense-item button {
+    background: #c53030;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.expense-item button:hover {
+    background: #9b2c2c;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #2c5282;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

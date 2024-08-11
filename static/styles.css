@@ -2,15 +2,16 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: #f4f7f9;
+    background-color: whitesmoke;
     margin: 0;
     padding: 0;
+    width: 100%;
 }
 
 .container {
     width: 80%;
+    max-width: 1200px;
     margin: auto;
-    overflow: hidden;
     padding: 20px;
 }
 
@@ -23,6 +24,7 @@ form {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
 label {
@@ -55,7 +57,6 @@ button:hover {
 }
 
 #results {
-    margin-top: 30px;
     background: #ffffff;
     padding: 20px;
     border-radius: 5px;
@@ -103,10 +104,25 @@ button:hover {
     border-top: 5px solid #2c5282;
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    margin: 20px auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    display: none;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+#loading::after {
+    content: "Loading...";
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    color: #2c5282;
 }
