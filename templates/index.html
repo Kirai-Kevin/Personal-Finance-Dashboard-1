@@ -4,10 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Finance Dashboard</title>
+    <link rel="stylesheet" href="/static/styledash.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <div class="wrapper">
+        <nav>
+            <div class="navbar">
+                <div class="logo">
+                    <img src="/static/images/logo.png" alt="logo"/>
+                    <span>Finances</span>
+                </div>
+                <a href="{{ url_for('dashboard') }}"><i class="fa-solid fa-chart-line"></i>Dashboard</a>
+                <a href="{{ url_for('index') }}"><i class="fa-solid fa-star"></i>Report</a>
+                <a href="{{ url_for('update_form') }}"><i class="fa-solid fa-calendar-days"></i>Update Form</a>
+                <a href="{{ url_for('savings') }}"><i class="fa-solid fa-spinner"></i>Savings</a>
+                <a href="{{ url_for('logout') }}" class="logout"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+            </div>
+        </nav>
+    
     <div class="container">
         <h1>Personal Finance Dashboard</h1>
         <form id="finance-form">
@@ -47,7 +63,7 @@
             </div>
         </div>
     </div>
-    
+</div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
