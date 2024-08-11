@@ -3,3 +3,4 @@ aijson-meta
 quart
 gunicorn
 uvicorn
+aijson
