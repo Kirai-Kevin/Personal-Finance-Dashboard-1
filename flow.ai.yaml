@@ -1,0 +1,72 @@
+version: "0.1"
+
+default_model:
+  model: anthropic.claude-v2
+  api_base: https://bedrock-runtime.us-west-2.amazonaws.com
+  auth_token:
+    env: AWS_ACCESS_KEY_ID
+
+flow:
+  get_financial_analysis:
+    action: llm
+    prompt: |
+      Analyze the following financial data:
+      Monthly Income: {{ income }}
+      Monthly Expenses:
+      {% for category, amount in expenses.items() %}
+      - {{ category }}: {{ amount }}
+      {% endfor %}
+      Monthly Savings Goal: {{ savings_goal }}
+
+      Provide a brief analysis of the user's financial situation, including:
+      1. Total expenses
+      2. Remaining balance after expenses
+      3. Whether the savings goal is realistic
+      4. Any areas of concern in spending habits
+
+      Format your response as HTML with appropriate tags for easy rendering in a web application.
+
+  get_budget_recommendations:
+    action: llm
+    prompt: |
+      Based on the following financial data:
+      Monthly Income: {{ income }}
+      Monthly Expenses:
+      {% for category, amount in expenses.items() %}
+      - {{ category }}: {{ amount }}
+      {% endfor %}
+      Monthly Savings Goal: {{ savings_goal }}
+
+      Provide 3-5 actionable recommendations to help the user improve their financial situation and reach their savings goal. 
+      Format your response as an HTML ordered list for easy rendering in a web application.
+
+  calculate_savings_progress:
+    action: llm
+    prompt: |
+      Calculate the savings progress based on the following data:
+      Monthly Income: {{ income }}
+      Total Monthly Expenses: {{ total_expenses }}
+      Monthly Savings Goal: {{ savings_goal }}
+
+      Provide the following information:
+      1. Current monthly savings (income minus expenses)
+      2. Percentage of savings goal achieved
+      3. A brief statement on whether the user is on track to meet their savings goal
+
+      Format your response as an HTML paragraph for easy rendering in a web application.
+
+  compile_results:
+    action: llm
+    prompt: |
+      Compile the following results into a comprehensive financial report:
+
+      Financial Analysis:
+      {{ get_financial_analysis }}
+
+      Budget Recommendations:
+      {{ get_budget_recommendations }}
+
+      Savings Progress:
+      {{ calculate_savings_progress }}  
+
+      Format the report as HTML with clear sections for each part of the analysis, using appropriate HTML tags for structure and styling.
